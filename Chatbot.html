@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family: Arial , sans-serif;
+            margin:0;
+            padding:10px;
+            background:url('what.JPG') no-repeat;
+            background-size:cover;
+            background-position:center;
+        }
+       header{background-color:#333333;
+             position:relative;
+             top:0px;
+           }
+       .profile{height:30px;
+                width:auto;
+                border-radius:15px;
+                float:left;
+                margin-right:10px;}
+       .top-text{font-size:24px;
+                 color:#f6f6f6;}
+        P{
+          font-weight:bold;}
+        #chatbox {
+            width: 92%;
+            height: 330px;
+            background-color:transparent;
+            border: 0px solid #000;
+            padding: 10px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            border-radius:12px;
+        }
+        input {color:white;
+            width: 240px;
+            padding: 15px;
+            border-radius:27px;
+            border:none;
+            background-color:#333333;
+        }
+        button {
+            padding: 0px;
+            position:absolute;
+            top:89.7%;
+            width:60px;
+            height:50px;
+            background-color:transparent;
+            color:white;
+            outline-style:none;
+            border:none;
+            align-items:center;
+            justify-content:center;
+            margin-left:6px;
+            border-radius:30px;
+        }.a{width:55px;
+           height:autoposition:absolute;top:1px;}
+        .gr{color:#f6f6f6;
+            background-color:#333333;
+            padding:8px;
+            width:max-content;
+            max-width:180px;
+            border-radius:15px;
+            border-bottom-left-radius:0px;}
+       .g{color:#f6f6f6;
+          margin-left:200px;
+          background-color:green;
+          padding:8px;
+          border-radius:15px;
+          border-top-right-radius:0px;}
+       .in{background-color:
+           transparent;
+           overflow-x:hidden;}
+    </style>
+</head>
+<body>
+<header>
+<img src="njugush.jpg" class="profile" /><span><p class="top-text" >CHATBOT</p></span>
+</header>
+<div id="chatbox">
+    <div id="messages"></div>
+</div>
+
+<div class="in" >
+<input type="text" id="userInput" placeholder="Message">
+<button onclick="processInput()"><img src="send2.png" class="a" ></button>
+</div>
+
+<script>
+    let userName = prompt("Your name: ");
+    let chatbox = document.getElementById('messages');
+    let running = true;
+
+
+    chatbox.innerHTML += `<p class="gr" >Hi ${userName}!</p>`;
+
+    function processInput() {
+        let userMessage = document.getElementById("userInput").value;
+        document.getElementById("userInput").value = "";  // Clear input field
+if (userMessage === "") return; 
+
+document.getElementById("userInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        processInput();
+    }
+});
+
+        chatbox.innerHTML += `<p class="g">You: ${userMessage}</p>`;
+        chatbox.innerHTML += `<span class="time" id="time" ></span><span>:</span><span id="min" ></span>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        let response = '';
+        const date = new Date() ;
+        const hours = date.getHours() ;
+        const minu = date.getMinutes();
+        const time = document.getElementById("time").innerHTML = hours;
+        const min = document.getElementById("min").innerHTML = minu;
+        let ans = userMessage.toLowerCase();
+
+        if (ans.includes('hi')) {
+            response = "How was your day today?";
+        } else if (ans.includes('fine') || ans.includes('okay')) {
+            response = "uko aje?";
+        } else if (ans.includes('nko') || ans.includes('poa')) {
+            response = "pia mm nko poa uko home?";
+        } else if (ans.includes('ee') || ans.includes('apana')) {
+            response = "ooh! Unapenda paka?";
+        } else if (ans.includes('Ee')) {
+            response = "pia mm napenda paka! Na mbwa unapenda ama unachukia!";
+        } else if (ans.includes('nachukia') || ans.includes('chukia')) {
+            response = "Hiyo ni mchezo!";
+        } else if (ans.includes('fuck') || ans.includes('shit')) {
+            response = "aggressive language please use good words?";
+        } else if (ans.includes('apana') || ans.includes('zi')) {
+            response = "ww umezidi tuma exit kwa message tutachat baadae?";
+        } else if (ans.includes('hi') || ans.includes('hello') || ans.includes('hey')) {
+        response = "How was your day today?";
+    } else if (ans.includes('good') || ans.includes('fine')) {
+        response = "Glad to hear that! Anything exciting happening?";
+    } else if (ans.includes('bad') || ans.includes('not great')) {
+        response = "I'm sorry to hear that. Want to talk about it?";
+    } else if (ans.includes('okay')) {
+        response = "Just okay? What could make your day better?";
+    } else if (ans.includes('what are you') || ans.includes('who are you')) {
+        response = "I'm a chatbot here to help you. How can I assist you?";
+    } else if (ans.includes('joke') || ans.includes('funny')) {
+        response = "Why don't scientists trust atoms? Because they make up everything!";
+    } else if (ans.includes('weather')) {
+        response = "I can't check the weather right now, but you can always use a weather app!";
+    } else if (ans.includes('help') || ans.includes('assist')) {
+        response = "How can I assist you today?";
+    } else if (ans.includes('bye') || ans.includes('exit')) {
+        response = "Goodbye! It was great chatting with you.";
+        running = false;
+    } else if (ans.includes('thanks') || ans.includes('thank you')) {
+        response = "You're welcome! Happy to help.";
+    } else if (ans.includes('how are you') || ans.includes('how are you doing')) {
+        response = "I'm just a chatbot, but I'm here for you!";
+    } else if (ans.includes('tell me about yourself')) {
+        response = "I'm a simple chatbot created to chat with you and make your day a little brighter.";
+    } else if (ans.includes('favorite color')) {
+        response = "I love all colors equally, but blue is quite calming!";
+    } else if (ans.includes('paka') || ans.includes('cat')) {
+        response = "Cats are cool! Do you have one?";
+    } else if (ans.includes('mbwa') || ans.includes('dog')) {
+        response = "Dogs are amazing companions. Do you have one?";
+    } else if (ans.includes('movie') || ans.includes('film')) {
+        response = "I love movies! What's your favorite one?";
+    } else if (ans.includes('food')) {
+        response = "Food is life! What's your favorite dish?";
+    } else if (ans.includes('music')) {
+        response = "Music is awesome! Do you have a favorite song or genre?";
+    } else if (ans.includes('sleep') || ans.includes('tired')) {
+        response = "Rest is important. Maybe it's time to relax?";
+    } else if (ans.includes('bored')) {
+        response = "Let's shake off that boredom! How about trying something new or fun?";
+    } else if (ans.includes('hobby')) {
+        response = "Hobbies are great for fun and relaxation. Do you have a favorite hobby?";
+    } else if (ans.includes('sport')) {
+        response = "Sports are great for staying active! Do you play any?";
+    } else if (ans.includes('game')) {
+        response = "I love games too! What's your favorite game?";
+    } else if (ans.includes('party')) {
+        response = "Parties are fun! Do you enjoy going to them?";
+    } else if (ans.includes('book') || ans.includes('read')) {
+        response = "Books are a great way to escape! What's the last book you read?";
+    } else if (ans.includes('travel')) {
+        response = "Traveling is amazing! Where's the best place you've been?";
+    } else if (ans.includes('holiday')) {
+        response = "Holidays are the best! Do you have a favorite holiday?";
+    } else if (ans.includes('animal')) {
+        response = "Animals are fascinating! What's your favorite animal?";
+    } else if (ans.includes('dream')) {
+        response = "Dreams can be interesting. What did you dream about recently?";
+    } else if (ans.includes('advice')) {
+        response = "I'm here for you. What advice do you need?";
+    } else if (ans.includes('happy')) {
+        response = "I'm glad you're happy! Keep that positivity going!";
+    } else if (ans.includes('sad')) {
+        response = "It's okay to feel sad sometimes. Do you want to talk about it?";
+    } else if (ans.includes('angry')) {
+        response = "Anger is tough, but I'm here if you need to vent.";
+    } else if (ans.includes('hi') || ans.includes('hello') || ans.includes('hey')) {
+        response = "How was your day today?";
+    } else if (ans.includes('love')) {
+        response = "Love is a beautiful thing! Who's the lucky one?";
+    } else if (ans.includes('i love you')) {
+        response = "Aww, that's sweet! Love is the best feeling in the world!";
+    } else if (ans.includes('relationship')) {
+        response = "Relationships can be amazing when built on trust, love, and communication.";
+    } else if (ans.includes('miss') || ans.includes('missing')) {
+        response = "It's hard to miss someone, but remember that love always finds a way!";
+    } else if (ans.includes('crush')) {
+        response = "Crushes are fun and exciting! Do you plan on telling them how you feel?";
+    } else if (ans.includes('heart')) {
+        response = "Hearts are meant to love and be loved. Keep spreading love!";
+    } else if (ans.includes('date')) {
+        response = "Dates are wonderful! Do you have any romantic plans coming up?";
+    } else if (ans.includes('romantic')) {
+        response = "Romance makes the world go round! What's your idea of a perfect romantic moment?";
+    } else if (ans.includes('forever')) {
+        response = "True love lasts forever. It's something beautiful to cherish!";
+    } else if (ans.includes('kiss')) {
+        response = "Kisses can say a lot without saying a word. Romantic, aren't they?";
+    } else if (ans.includes('hug')) {
+        response = "Hugs are warm and comforting! A hug can sometimes speak louder than words.";
+    } else if (ans.includes('feelings')) {
+        response = "Feelings are complex, but sharing them with someone makes everything better.";
+    } else if (ans.includes('partner')) {
+        response = "A great partner is someone who stands by you through thick and thin. Do you have one?";
+    } else if (ans.includes('wedding')) {
+        response = "Weddings are magical moments filled with love and happiness!";
+    } else if (ans.includes('soulmate')) {
+        response = "Finding your soulmate is like finding a piece of yourself in someone else.";
+    } else if (ans.includes('thanks') || ans.includes('thank you')) {
+        response = "You're welcome! I'm happy to help.";
+    } else if (ans.includes('bye') || ans.includes('exit')) {
+        response = "Goodbye! It was lovely chatting with you.";
+        running = false;
+    } else {
+            response = "I didn't quite get that.";
+        }
+
+        if (running) {
+            chatbox.innerHTML += `<p class="gr" >Bot: ${response}</p>`;
+            chatbox.scrollTop = chatbox.scrollHeight;  // Scroll to bottom
+        }
+    }
+</script>
+
+</body>
+</html>
